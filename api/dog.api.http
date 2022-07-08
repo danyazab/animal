@@ -1,0 +1,14 @@
+### GET all dogs on the server
+GET http://localhost:8000/pet/dog
+Accept: application/json
+
+### Create new dog position
+POST http://localhost:8000/pet/dog
+Content-Type: application/json
+
+{
+  "name": "Dino",
+  "age": 3,
+  "class": "Doberman",
+  "sex": "maile"
+}
