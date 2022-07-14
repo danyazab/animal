@@ -2,7 +2,8 @@ package api
 
 import (
 	"danyazab/animal/config"
-	"danyazab/animal/internal/api/controller/dog"
+	"danyazab/animal/internal/api/controller/cat"
+	"danyazab/animal/internal/api/controller/swagger"
 	"fmt"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	"github.com/jmoiron/sqlx"
@@ -19,7 +20,8 @@ const migrationsDirPath = "file://database/migration"
 type API struct {
 	dig.In
 
-	dog.Controller
+	cat.Controller
+	swagger.Swagger
 }
 
 func RunServer(api API, db *sqlx.DB, cfg *config.Database) error {
@@ -53,6 +55,9 @@ func runMigrations(db *sqlx.DB, dbName string) error {
 }
 
 func (a *API) initRoutes(app *echo.Echo) {
-	app.POST("/pet/dog", a.Create)
-	app.GET("/pet/dog", a.List)
+	app.Static(swagger.SwaggerConfUrl, swagger.SwaggerConfPath)
+	app.GET("/swagger", a.View)
+
+	app.POST("/pet/cat", a.Create)
+	app.GET("/pet/cat", a.List)
 }

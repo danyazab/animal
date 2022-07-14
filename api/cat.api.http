@@ -1,9 +1,9 @@
 ### GET all dogs on the server
-GET http://localhost:8000/pet/dog
+GET http://localhost:8000/pet/cat
 Accept: application/json
 
 ### Create new dog position
-POST http://localhost:8000/pet/dog
+POST http://localhost:8000/pet/cat
 Content-Type: application/json
 
 {

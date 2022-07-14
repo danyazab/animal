@@ -1,5 +1,7 @@
 # Animals
 
+Api documentation available in [Swagger](http://localhost:8000/swagger)
+
 ## Build & Run (Locally)
 ### Prerequisite
 - go 1.18
@@ -20,3 +22,4 @@ go fmt ./...
 // run unit-test
 go test -v -race -timeout 30s ./...
 ```
+
