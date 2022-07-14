@@ -1,0 +1,176 @@
+openapi: 3.0.9
+info:
+  title: animals
+  version: '1.0'
+  description: Animal API enable you to integrate your applications with animals DB
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+  contact:
+    name: Developer Center
+    url: 'https://github.com/danyazab'
+    email: zabolotnijdanilo@gmail.com
+servers:
+  - url: 'http://localhost:8000'
+tags:
+  - name: Cat
+    description: |
+      The cat is a domestic species of small carnivorous mammal.
+paths:
+  /pet/cat:
+    get:
+      summary: Get cats list
+      tags:
+        - Cat
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    id: 1
+                    name: Tom
+                    age: 2
+                    breed: sphynx
+                    sex: male
+                    color: gray
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  age:
+                    type: integer
+                  breed:
+                    type: string
+                  sex:
+                    type: string
+                    enum:
+                      - male
+                      - female
+                    example: female
+                  color:
+                    type: string
+              examples:
+                cat:
+                  value:
+                    id: 1
+                    name: Tom
+                    age: 2
+                    breed: sphynx
+                    sex: male
+                    color: gray
+      operationId: get-pet-cat
+      description: Get list of cats
+    post:
+      tags:
+        - Cat
+      summary: Create cat
+      operationId: post-pet-cat
+      description: Create new Cat
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  name: Tom
+                  breed: sphynx
+                  description: 'The sphynx is a medium-sized cat with a striking appearance, identified by her hairless, wrinkled skin and large ears. She has a sleek, muscular body that is dense and heavy for her size. The breed is medium sized but nicely muscled.'
+                  weight: 4.4
+                  birthday: 24-06-2012
+                  sex: male
+                  tailLength: 30
+                  color: gray
+                  woolType: short
+                  isChipped: true
+              properties:
+                name:
+                  type: string
+                  description: The animal`s name, max 50 chars
+                breed:
+                  type: string
+                description:
+                  type: string
+                  description: short animal description, max 1000 chars
+                weight:
+                  type: number
+                birthday:
+                  type: string
+                  description: The animal birthday, date should be in the "YYYY-MM-DD" format
+                sex:
+                  type: string
+                  enum:
+                    - male
+                    - female
+                tailLength:
+                  type: integer
+                color:
+                  type: string
+                woolType:
+                  type: string
+                isChipped:
+                  type: boolean
+              required:
+                - name
+                - breed
+                - weight
+                - birthday
+                - sex
+                - color
+            examples:
+              cat:
+                value:
+                  name: Tom
+                  breed: sphynx
+                  description: 'The sphynx is a medium-sized cat with a striking appearance, identified by her hairless, wrinkled skin and large ears. She has a sleek, muscular body that is dense and heavy for her size. The breed is medium sized but nicely muscled.'
+                  weight: 4.4
+                  birthday: 2012-06-24
+                  sex: male
+                  tailLength: 30
+                  color: gray
+                  woolType: short
+                  isChipped: true
+        description: Api to create new cat
+      responses:
+        '201':
+          description: A new Cat was created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "17fdc6a1-20b6-4d6b-bc74-6709061698cb"
+        '400':
+          $ref: '#/components/responses/400'
+components:
+  responses:
+    '400':
+      description: |
+        The server doesn't understand the request due to incorrect syntax. Change the syntax and repeat the request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              request_id:
+                type: string
+                description: |
+                  Correlates HTTP requests between a client and server. The value does not carry any inherent meaning, but is just a token to identify correlating requests and responses.
+                example: 708410a9-997e-4360-ba76-26db6c89ee1a
+                format: uuid
+              errors:
+                type: array
+                description: A list of errors.
+                items:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: The server cannot or will not process the request due to something that is perceived to be a client error.

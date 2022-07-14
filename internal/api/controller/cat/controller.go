@@ -1,4 +1,4 @@
-package dog
+package cat
 
 import (
 	"github.com/labstack/echo"
