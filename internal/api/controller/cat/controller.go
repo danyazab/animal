@@ -4,6 +4,7 @@ import (
 	"danyazab/animal/internal/animal/model"
 	"danyazab/animal/internal/animal/model/util"
 	"danyazab/animal/internal/api/http/request"
+	"danyazab/animal/internal/api/http/response"
 	"github.com/labstack/echo"
 	"go.uber.org/dig"
 	"net/http"
@@ -48,9 +49,27 @@ func (cntr *Controller) Create(ec echo.Context) error {
 }
 
 func (cntr *Controller) List(ec echo.Context) error {
-	res := []string{
-		"kkk",
+	cats, total, err := cntr.Repository.GetAll(ec.Request().Context())
+	if err != nil {
+		return err
 	}
 
-	return ec.JSON(http.StatusOK, res)
+	items := make([]response.CatResp, len(cats))
+	for i, cat := range cats {
+		items[i] = response.CatResp{
+			Id:    cat.ID,
+			Name:  cat.Name,
+			Age:   23, // FIXME Danylo
+			Breed: cat.Breed,
+			Sex:   string(cat.Sex),
+			Color: cat.Color,
+		}
+	}
+
+	return ec.JSON(http.StatusOK, response.CatRespList{
+		Items: items,
+		Meta: response.MetaData{
+			Total: total,
+		},
+	})
 }

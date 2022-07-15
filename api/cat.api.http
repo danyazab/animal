@@ -7,7 +7,7 @@ POST http://localhost:8000/pet/cat
 Content-Type: application/json
 
 {
-  "name": "Tom",
+  "name": "Tom1",
   "description": "The sphynx is a medium-sized cat with a striking appearance, identified by her hairless, wrinkled skin and large ears. She has a sleek, muscular body that is dense and heavy for her size. The breed is medium sized but nicely muscled.",
   "breed": "sphynx",
   "weight": 4.4,
