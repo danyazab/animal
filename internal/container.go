@@ -2,6 +2,7 @@ package internal
 
 import (
 	"danyazab/animal/config"
+	"danyazab/animal/internal/infrastructure/repository/postgres"
 	"fmt"
 	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/jmoiron/sqlx"
@@ -25,6 +26,9 @@ func container(cfg interface{}) (*dig.Container, error) {
 		return nil, err
 	}
 	if err := c.Provide(sqlxProvider); err != nil {
+		return nil, err
+	}
+	if err := c.Provide(postgres.NewCatRepository); err != nil {
 		return nil, err
 	}
 

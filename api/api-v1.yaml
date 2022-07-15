@@ -82,7 +82,7 @@ paths:
                   breed: sphynx
                   description: 'The sphynx is a medium-sized cat with a striking appearance, identified by her hairless, wrinkled skin and large ears. She has a sleek, muscular body that is dense and heavy for her size. The breed is medium sized but nicely muscled.'
                   weight: 4.4
-                  birthday: 24-06-2012
+                  birthday: 2006-01-02
                   sex: male
                   tailLength: 30
                   color: gray
