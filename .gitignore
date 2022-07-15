@@ -1,0 +1,7 @@
+/.idea
+/_dist
+/bin
+/vendor
+
+# Project configuration.
+.env
