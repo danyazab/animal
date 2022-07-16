@@ -8,8 +8,8 @@ const (
 type TypeSex string
 
 const (
-	TypeWoolShort TypeWool = "male"
-	TypeWoolLong  TypeWool = "female"
+	TypeWoolShort TypeWool = "short"
+	TypeWoolLong  TypeWool = "long"
 )
 
 type TypeWool string

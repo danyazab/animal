@@ -9,6 +9,8 @@ import (
 //go:generate  mockery --dir . --name CatRepository --output ./../../gen/mock
 type CatRepository interface {
 	Store(ctx context.Context, entity Cat) (Cat, error)
+	Update(ctx context.Context, entity Cat) error
+	FindByID(ctx context.Context, id uint) (Cat, bool, error)
 }
 
 type Cat struct {

@@ -2,12 +2,16 @@ package internal
 
 import (
 	"danyazab/animal/config"
-	"danyazab/animal/internal/infrastructure/repository/postgres"
+	"danyazab/animal/internal/infrastructure/repository/postgres/datastore"
+	"danyazab/animal/pkg/database/core"
+	"danyazab/animal/pkg/database/migrator"
 	"fmt"
 	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/jmoiron/sqlx"
 	"go.uber.org/dig"
 )
+
+const migrationsDirPath = "file://internal/infrastructure/repository/postgres/migrations"
 
 func Invoke(fn, cfg interface{}) error {
 	c, err := container(cfg)
@@ -25,17 +29,17 @@ func container(cfg interface{}) (*dig.Container, error) {
 	if err := c.Provide(cfg); err != nil {
 		return nil, err
 	}
-	if err := c.Provide(sqlxProvider); err != nil {
+	if err := c.Provide(SqlxProvider); err != nil {
 		return nil, err
 	}
-	if err := c.Provide(postgres.NewCatRepository); err != nil {
+	if err := c.Provide(datastore.NewCatRepository); err != nil {
 		return nil, err
 	}
 
 	return c, nil
 }
 
-func sqlxProvider(cfg *config.Database) *sqlx.DB {
+func SqlxProvider(cfg *config.Database) core.NamedExecutor {
 	connUrl := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		cfg.Host,
@@ -45,6 +49,10 @@ func sqlxProvider(cfg *config.Database) *sqlx.DB {
 		cfg.Name)
 
 	db := sqlx.MustConnect("pgx", connUrl)
+
+	if err := migrator.MigratePostgres(db.DB, cfg.Name, migrationsDirPath, migrator.UpCmd); err != nil {
+		panic(err)
+	}
 
 	return db
 }
