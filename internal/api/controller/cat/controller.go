@@ -50,7 +50,12 @@ func (cntr *Controller) Create(ec echo.Context) error {
 }
 
 func (cntr *Controller) List(ec echo.Context) error {
-	cats, total, err := cntr.Repository.GetAll(ec.Request().Context())
+	var req request.CatListReq
+	if err := ec.Bind(&req); err != nil {
+		return err
+	}
+
+	cats, total, err := cntr.Repository.GetAll(ec.Request().Context(), req.PrePage)
 	if err != nil {
 		return err
 	}

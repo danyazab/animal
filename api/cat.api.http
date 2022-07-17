@@ -1,5 +1,5 @@
 ### GET all dogs on the server
-GET http://localhost:8000/pet/cat
+GET http://localhost:8000/pet/cat?perPage=3
 Accept: application/json
 
 ### Create new dog position
@@ -7,7 +7,7 @@ POST http://localhost:8000/pet/cat
 Content-Type: application/json
 
 {
-  "name": "Tom1",
+  "name": "Tom",
   "description": "The sphynx is a medium-sized cat with a striking appearance, identified by her hairless, wrinkled skin and large ears. She has a sleek, muscular body that is dense and heavy for her size. The breed is medium sized but nicely muscled.",
   "breed": "sphynx",
   "weight": 4.4,

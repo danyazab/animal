@@ -13,4 +13,7 @@ type (
 		IsChipped   bool    `json:"isChipped"`
 		Weight      float32 `json:"weight"`
 	}
+	CatListReq struct {
+		PrePage uint `query:"perPage"`
+	}
 )

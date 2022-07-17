@@ -9,7 +9,7 @@ import (
 //go:generate  mockery --dir . --name CatRepository --output ./../../gen/mock
 type CatRepository interface {
 	Store(ctx context.Context, entity Cat) (Cat, error)
-	GetAll(ctx context.Context) ([]Cat, uint64, error)
+	GetAll(ctx context.Context, limit uint) ([]Cat, uint64, error)
 }
 
 type Cat struct {

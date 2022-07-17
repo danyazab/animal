@@ -30,11 +30,20 @@ func (r catRepository) Store(ctx context.Context, entity model.Cat) (model.Cat, 
 	return res, err
 }
 
-func (r catRepository) GetAll(ctx context.Context) ([]model.Cat, uint64, error) {
+func (r catRepository) GetAll(ctx context.Context, limit uint) ([]model.Cat, uint64, error) {
+	query := "SELECT * FROM cat WHERE true"
+	params := map[string]interface{}{}
+
+	if limit > 0 {
+		query += " LIMIT :limit"
+		params["limit"] = limit
+	}
+
 	return core.Paged[model.Cat](
 		ctx,
 		r.db,
-		"SELECT * FROM cat",
+		query,
 		"SELECT COUNT(*) FROM cat",
+		params,
 	)
 }
