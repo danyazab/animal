@@ -7,6 +7,7 @@ import (
 	"danyazab/animal/internal/api/http/response"
 	"github.com/labstack/echo"
 	"go.uber.org/dig"
+	"math"
 	"net/http"
 	"time"
 )
@@ -55,11 +56,13 @@ func (cntr *Controller) List(ec echo.Context) error {
 	}
 
 	items := make([]response.CatResp, len(cats))
+	now := time.Now()
 	for i, cat := range cats {
+		var age = now.Sub(cat.Birthday)
 		items[i] = response.CatResp{
 			Id:    cat.ID,
 			Name:  cat.Name,
-			Age:   23, // FIXME Danylo
+			Age:   roundTime(age.Seconds() / 604800),
 			Breed: cat.Breed,
 			Sex:   string(cat.Sex),
 			Color: cat.Color,
@@ -72,4 +75,16 @@ func (cntr *Controller) List(ec echo.Context) error {
 			Total: total,
 		},
 	})
+}
+
+func roundTime(input float64) uint {
+	var result float64
+	if input < 0 {
+		result = math.Ceil(input - 0.5)
+	} else {
+		result = math.Floor(input + 0.5)
+	}
+	// only interested in integer, ignore fractional
+	i, _ := math.Modf(result)
+	return uint(i)
 }

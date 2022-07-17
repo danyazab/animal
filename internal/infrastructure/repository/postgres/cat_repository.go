@@ -34,7 +34,7 @@ func (r catRepository) GetAll(ctx context.Context) ([]model.Cat, uint64, error) 
 	return core.Paged[model.Cat](
 		ctx,
 		r.db,
-		"запит на отримання всіх данних",
-		"запит на отримання к-ті котиків",
+		"SELECT * FROM cat",
+		"SELECT COUNT(*) FROM cat",
 	)
 }
