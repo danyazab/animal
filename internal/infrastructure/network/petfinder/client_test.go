@@ -5,10 +5,11 @@ import (
 	"danyazab/animal/pkg/http/client"
 	"danyazab/animal/pkg/http/clienttesting"
 	"fmt"
-	"github.com/go-resty/resty/v2"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"testing"
+
+	"github.com/go-resty/resty/v2"
+	"github.com/stretchr/testify/assert"
 )
 
 func Test_GetCatsBreeds(t *testing.T) {

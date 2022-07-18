@@ -8,10 +8,11 @@ import (
 	"danyazab/animal/pkg/database/fixtures"
 	"encoding/json"
 	"fmt"
-	"github.com/jmoiron/sqlx"
-	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
+
+	"github.com/jmoiron/sqlx"
+	"github.com/stretchr/testify/assert"
 )
 
 var newCat = model.Cat{
@@ -130,7 +131,6 @@ func Test_Update(t *testing.T) {
 			if c.compare != nil {
 				c.compare(c.cat, exampleRepo)
 			}
-
 		}))
 	}
 }

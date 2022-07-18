@@ -2,12 +2,14 @@ package swagger
 
 import (
 	"bytes"
-	"github.com/google/uuid"
-	"github.com/labstack/echo"
 	"net/http"
 
-	"go.uber.org/dig"
+	"github.com/google/uuid"
+	"github.com/labstack/echo"
+
 	"text/template"
+
+	"go.uber.org/dig"
 )
 
 const SwaggerConfPath = "./api/api-v1.yaml"
@@ -21,7 +23,7 @@ type Swagger struct {
 	dig.In
 }
 
-func (cntr *Swagger) View(ec echo.Context) error {
+func (*Swagger) View(ec echo.Context) error {
 	p := TplParams{Url: SwaggerConfUrl}
 
 	res, err := parse(Tpl, &p)
@@ -31,21 +33,21 @@ func (cntr *Swagger) View(ec echo.Context) error {
 	}
 
 	ec.Response().Header().Set("Content-type", "text/html; charset=UTF-8")
+
 	return ec.String(http.StatusOK, res)
 }
 
-func parse(t string, data interface{}) (s string, err error) {
+func parse(t string, data interface{}) (string, error) {
 	n := uuid.New().String()
 	tmpl, err := template.New(n).Parse(t)
 	if err != nil {
-		return
+		return "", err
 	}
 	var buf bytes.Buffer
 	err = tmpl.Execute(&buf, data)
 	if err != nil {
-		return
+		return "", err
 	}
 
-	s = buf.String()
-	return
+	return buf.String(), nil
 }

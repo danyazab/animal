@@ -1,0 +1,38 @@
+name: OpenAPI
+
+on:
+  push:
+    branches:
+      - master
+
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  openapi:
+    name: Validate
+    runs-on: ubuntu-latest
+
+    # Service containers to run with `runner-job`
+    services:
+      # Label used to access the service container
+      swagger-editor:
+        # Docker Hub image
+        image: swaggerapi/swagger-editor
+        ports:
+          # Maps port 8080 on service container to the host 80
+          - 80:8080
+
+    # The maximum number of minutes to let a workflow run
+    # before GitHub automatically cancels it. Default: 360
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate OpenAPI definition
+        uses: char0n/swagger-editor-validate@v1.3.1
+        with:
+          swagger-editor-url: http://localhost/
+          definition-file: api/api-v1.yaml

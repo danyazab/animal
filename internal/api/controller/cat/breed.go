@@ -2,9 +2,10 @@ package cat
 
 import (
 	"danyazab/animal/internal/infrastructure/network/petfinder"
+	"net/http"
+
 	"github.com/labstack/echo"
 	"go.uber.org/dig"
-	"net/http"
 )
 
 type Breed struct {

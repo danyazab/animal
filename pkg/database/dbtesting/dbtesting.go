@@ -3,17 +3,15 @@ package dbtesting
 import (
 	"database/sql"
 	"fmt"
-	"github.com/DATA-DOG/go-txdb"
 	"log"
 	"strings"
 	"testing"
 
+	"github.com/DATA-DOG/go-txdb"
+
 	"github.com/jmoiron/sqlx"
 	"github.com/ory/dockertest/v3"
 )
-
-var state = struct {
-}{}
 
 // Migrator performs database migrations
 type Migrator func(conn *sql.DB, dbname string) error

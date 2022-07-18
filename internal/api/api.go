@@ -4,17 +4,15 @@ import (
 	"danyazab/animal/internal/api/controller/cat"
 	"danyazab/animal/internal/api/controller/swagger"
 	"fmt"
+
 	"github.com/labstack/echo"
 	"go.uber.org/dig"
-
-	_ "github.com/golang-migrate/migrate/v4/database/postgres"
-	_ "github.com/golang-migrate/migrate/v4/source/file"
 )
 
 type API struct {
 	dig.In
 
-	CatCrud cat.CatCrud
+	CatCrud cat.Crud
 	Bread   cat.Breed
 	swagger.Swagger
 }

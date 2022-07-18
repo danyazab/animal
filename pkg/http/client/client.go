@@ -3,8 +3,9 @@ package client
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/go-resty/resty/v2"
 	"net/http"
+
+	"github.com/go-resty/resty/v2"
 )
 
 type routeName string
@@ -22,6 +23,7 @@ type Request struct {
 
 func (r *Request) WithAuth(token string) *Request {
 	r.SetAuthToken(token)
+
 	return r
 }
 

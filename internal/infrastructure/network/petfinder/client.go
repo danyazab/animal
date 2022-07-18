@@ -3,6 +3,7 @@ package petfinder
 import (
 	"context"
 	"danyazab/animal/pkg/http/client"
+
 	"github.com/go-resty/resty/v2"
 )
 
@@ -27,7 +28,7 @@ func (c *Client) GetCatsBreeds(ctx context.Context) ([]string, error) {
 		return nil, err
 	}
 
-	return c.getCatsBreeds(ctx, token)
+	return c.catsBreeds(ctx, token)
 }
 
 func (c *Client) getAuthToken(ctx context.Context) (string, error) {
@@ -50,7 +51,7 @@ func (c *Client) getAuthToken(ctx context.Context) (string, error) {
 	return result.AccessToken, c.transport.Execute(clientReq, resty.MethodPost, route, &result)
 }
 
-func (c *Client) getCatsBreeds(ctx context.Context, token string) ([]string, error) {
+func (c *Client) catsBreeds(ctx context.Context, token string) ([]string, error) {
 	route := "/v2/types/cat/breeds"
 	result := struct {
 		Breeds []struct {

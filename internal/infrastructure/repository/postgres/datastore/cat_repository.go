@@ -4,7 +4,6 @@ import (
 	"context"
 	"danyazab/animal/internal/animal/model"
 	"danyazab/animal/pkg/database/core"
-	"fmt"
 )
 
 type catRepository struct {
@@ -40,10 +39,10 @@ func (r catRepository) Store(ctx context.Context, entity model.Cat) (model.Cat, 
 	res, _, err := core.Single[model.Cat](
 		ctx,
 		r.db,
-		fmt.Sprintf(
-			`INSERT INTO cat (name, description, breed, birthday, sex, tail_length, color, wool_type, is_chipped, weight, created_at, updated_at)
+		`INSERT INTO cat (name, description, breed, birthday, sex, tail_length, color, wool_type, is_chipped, weight, created_at, updated_at)
 				VALUES (:name, :description, :breed, :birthday, :sex, :tail_length, :color, :wool_type, :is_chipped, :weight, NOW(), NOW()) RETURNING *`,
-		), entity)
+		entity,
+	)
 
 	return res, err
 }

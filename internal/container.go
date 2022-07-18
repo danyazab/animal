@@ -8,11 +8,11 @@ import (
 	"danyazab/animal/pkg/database/migrator"
 	"danyazab/animal/pkg/http/client"
 	"fmt"
+	"time"
+
 	"github.com/go-resty/resty/v2"
-	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/jmoiron/sqlx"
 	"go.uber.org/dig"
-	"time"
 )
 
 const migrationsDirPath = "file://internal/infrastructure/repository/postgres/migrations"
@@ -22,6 +22,7 @@ func Invoke(fn, cfg interface{}) error {
 	if err != nil {
 		return err
 	}
+
 	return c.Invoke(fn)
 }
 

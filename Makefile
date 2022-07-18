@@ -10,6 +10,9 @@ clear-di: ## Clear project DI
 test: ## Run go test ./...
 	@go test -count=1 -v ./...
 
+lint: ## Run golangci-lint
+	@golangci-lint run
+
 create-migration: ## Create new migration files
 	MIGRATION_NAME=$(shell bash -c 'read -p "Migration name: " mname; echo $$mname') && \
 	DT=$$(date '+%Y%m%d%H%M%S') && \

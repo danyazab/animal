@@ -1,10 +1,11 @@
 package clienttesting
 
 import (
-	"github.com/go-resty/resty/v2"
-	"github.com/jarcoal/httpmock"
 	"net/http"
 	"testing"
+
+	"github.com/go-resty/resty/v2"
+	"github.com/jarcoal/httpmock"
 )
 
 const host = "https://testing.com"
