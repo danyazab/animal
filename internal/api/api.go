@@ -14,7 +14,8 @@ import (
 type API struct {
 	dig.In
 
-	cat.Controller
+	CatCrud cat.CatCrud
+	Bread   cat.Breed
 	swagger.Swagger
 }
 
@@ -31,6 +32,7 @@ func (a *API) initRoutes(app *echo.Echo) {
 	app.Static(swagger.SwaggerConfUrl, swagger.SwaggerConfPath)
 	app.GET("/swagger", a.View)
 
-	app.POST("/pet/cat", a.Create)
-	app.GET("/pet/cat", a.List)
+	app.POST("/pet/cat", a.CatCrud.Create)
+	app.GET("/pet/cat", a.CatCrud.List)
+	app.GET("/pet/cat/breads", a.Bread.List)
 }

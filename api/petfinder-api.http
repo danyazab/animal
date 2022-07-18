@@ -1,0 +1,15 @@
+
+# curl -d "grant_type=client_credentials&client_id=NKfpgAFDY3u7n0ME0aWAX8HlulkG1bgx9Ffi03Lb83WOlmdNAL&client_secret=MVllHQTuOTUei9Aq8JxR4wGa9f3DFA5kO1QNDVUL" https://api.petfinder.com/v2/oauth2/token
+POST https://api.petfinder.com/v2/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=NKfpgAFDY3u7n0ME0aWAX8HlulkG1bgx9Ffi03Lb83WOlmdNAL&client_secret=MVllHQTuOTUei9Aq8JxR4wGa9f3DFA5kO1QNDVUL
+
+> {% client.global.set("access_token", response.body.access_token); %}
+###
+
+### Authorization by token, part 2. Use token to authorize.
+GET https://api.petfinder.com/v2/types/cat/breeds
+Authorization: Bearer {{access_token}}
+
+###

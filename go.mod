@@ -4,9 +4,11 @@ go 1.18
 
 require (
 	github.com/DATA-DOG/go-txdb v0.1.0
+	github.com/go-resty/resty/v2 v2.7.0
 	github.com/golang-migrate/migrate/v4 v4.15.2
 	github.com/google/uuid v1.3.0
 	github.com/jackc/pgx/v4 v4.10.1
+	github.com/jarcoal/httpmock v1.2.0
 	github.com/jmoiron/sqlx v1.3.5
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/lib/pq v1.10.0

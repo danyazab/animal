@@ -12,12 +12,12 @@ import (
 
 const birthdayLayout = "2006-01-02"
 
-type Controller struct {
+type CatCrud struct {
 	dig.In
 	Repository model.CatRepository
 }
 
-func (cntr *Controller) Create(ec echo.Context) error {
+func (cntr *CatCrud) Create(ec echo.Context) error {
 	var req request.CreateCatReq
 	if err := ec.Bind(&req); err != nil {
 		return err
@@ -47,7 +47,7 @@ func (cntr *Controller) Create(ec echo.Context) error {
 	})
 }
 
-func (cntr *Controller) List(ec echo.Context) error {
+func (cntr *CatCrud) List(ec echo.Context) error {
 	res := []string{
 		"kkk",
 	}
