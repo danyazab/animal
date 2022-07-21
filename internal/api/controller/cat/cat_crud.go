@@ -4,20 +4,21 @@ import (
 	"danyazab/animal/internal/animal/model"
 	"danyazab/animal/internal/animal/model/util"
 	"danyazab/animal/internal/api/http/request"
-	"github.com/labstack/echo"
-	"go.uber.org/dig"
 	"net/http"
 	"time"
+
+	"github.com/labstack/echo"
+	"go.uber.org/dig"
 )
 
 const birthdayLayout = "2006-01-02"
 
-type Controller struct {
+type Crud struct {
 	dig.In
 	Repository model.CatRepository
 }
 
-func (cntr *Controller) Create(ec echo.Context) error {
+func (cntr *Crud) Create(ec echo.Context) error {
 	var req request.CreateCatReq
 	if err := ec.Bind(&req); err != nil {
 		return err
@@ -47,7 +48,7 @@ func (cntr *Controller) Create(ec echo.Context) error {
 	})
 }
 
-func (cntr *Controller) List(ec echo.Context) error {
+func (*Crud) List(ec echo.Context) error {
 	res := []string{
 		"kkk",
 	}

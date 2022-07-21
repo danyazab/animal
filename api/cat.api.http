@@ -1,8 +1,12 @@
-### GET all dogs on the server
+### GET all cats breads
+GET http://localhost:8000/pet/cat/breads
+Accept: application/json
+
+### GET all cats on the server
 GET http://localhost:8000/pet/cat
 Accept: application/json
 
-### Create new dog position
+### Create new cat position
 POST http://localhost:8000/pet/cat
 Content-Type: application/json
 

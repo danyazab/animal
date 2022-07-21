@@ -1,0 +1,45 @@
+name: Analyze
+
+on:
+  push:
+    tags:
+      - v*
+    branches:
+      - master
+
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  golangci:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    # The maximum number of minutes to let a workflow run
+    # before GitHub automatically cancels it. Default: 360
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v3.2.0
+        with:
+          # Version of golangci-lint to use in form of v1.2 or `latest` to use the latest version
+          version: latest
+
+          # If set to true and the action runs on a pull request - the action outputs only newly found issues
+          only-new-issues: true
+
+          skip-go-installation: true
+
+          # golangci-lint command line arguments.
+          args: --timeout=5m --verbose --skip-dirs "internal/gen"
