@@ -3,5 +3,6 @@
 /bin
 /vendor
 
+coverage.out
 # Project configuration.
 .env

@@ -1,10 +1,10 @@
 package cat
 
 import (
-	"danyazab/animal/internal/infrastructure/network/petfinder"
+	"github.com/danyazab/animal/internal/infrastructure/network/petfinder"
 	"net/http"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"go.uber.org/dig"
 )
 

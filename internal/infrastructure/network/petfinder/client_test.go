@@ -2,9 +2,9 @@ package petfinder
 
 import (
 	"context"
-	"danyazab/animal/pkg/http/client"
-	"danyazab/animal/pkg/http/clienttesting"
 	"fmt"
+	"github.com/danyazab/animal/pkg/http/client"
+	"github.com/danyazab/animal/pkg/http/clienttesting"
 	"net/http"
 	"testing"
 

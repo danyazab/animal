@@ -1,7 +1,7 @@
 package petfinder
 
 import (
-	"danyazab/animal/pkg/http/clienttesting"
+	"github.com/danyazab/animal/pkg/http/clienttesting"
 	"os"
 	"testing"
 )

@@ -1,10 +1,10 @@
 package datastore
 
 import (
-	"danyazab/animal/pkg/database/dbtesting"
-	"danyazab/animal/pkg/database/migrator"
 	"database/sql"
 	"fmt"
+	"github.com/danyazab/animal/pkg/database/dbtesting"
+	"github.com/danyazab/animal/pkg/database/migrator"
 	"os"
 	"path/filepath"
 	"runtime"

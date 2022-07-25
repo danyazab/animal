@@ -2,7 +2,7 @@ package model
 
 import (
 	"context"
-	util2 "danyazab/animal/internal/animal/model/util"
+	util2 "github.com/danyazab/animal/internal/animal/model/util"
 	"time"
 )
 

@@ -6,12 +6,16 @@ Accept: application/json
 GET http://localhost:8000/pet/cat
 Accept: application/json
 
+### GET cas by id
+GET http://localhost:8000/pet/cat/{{catId}}
+Accept: application/json
+
 ### Create new cat position
 POST http://localhost:8000/pet/cat
 Content-Type: application/json
 
 {
-  "name": "Tom",
+  "name": "Tom__{{$uuid}}",
   "description": "The sphynx is a medium-sized cat with a striking appearance, identified by her hairless, wrinkled skin and large ears. She has a sleek, muscular body that is dense and heavy for her size. The breed is medium sized but nicely muscled.",
   "breed": "sphynx",
   "weight": 4.4,
@@ -22,3 +26,29 @@ Content-Type: application/json
   "woolType": "short",
   "isChipped": true
 }
+
+> {%
+    client.global.set("catId", response.body.id);
+    client.log(response.body.id);
+%}
+
+### Edit new cat position
+PUT http://localhost:8000/pet/cat/{{catId}}
+Content-Type: application/json
+
+{
+  "name": "Tom_edit",
+  "description": "The sphynx is a medium-sized cat.",
+  "breed": "sphynx",
+  "weight": 4.1,
+  "birthday": "2022-05-03",
+  "sex": "male",
+  "tailLength": 40,
+  "color": "black",
+  "woolType": "long",
+  "isChipped": true
+}
+
+### Edit new cat position
+DELETE http://localhost:8000/pet/cat/{{catId}}
+Content-Type: application/json

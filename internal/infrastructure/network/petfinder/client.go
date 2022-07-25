@@ -2,7 +2,7 @@ package petfinder
 
 import (
 	"context"
-	"danyazab/animal/pkg/http/client"
+	"github.com/danyazab/animal/pkg/http/client"
 
 	"github.com/go-resty/resty/v2"
 )

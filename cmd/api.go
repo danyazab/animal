@@ -1,9 +1,9 @@
 package main
 
 import (
-	"danyazab/animal/config"
-	"danyazab/animal/internal"
-	"danyazab/animal/internal/api"
+	"github.com/danyazab/animal/config"
+	"github.com/danyazab/animal/internal"
+	"github.com/danyazab/animal/internal/api"
 	"log"
 )
 

@@ -2,12 +2,12 @@ package datastore
 
 import (
 	"context"
-	"danyazab/animal/internal/animal/model"
-	"danyazab/animal/internal/animal/model/util"
-	"danyazab/animal/pkg/database/dbtesting"
-	"danyazab/animal/pkg/database/fixtures"
 	"encoding/json"
 	"fmt"
+	"github.com/danyazab/animal/internal/animal/model"
+	"github.com/danyazab/animal/internal/animal/model/util"
+	"github.com/danyazab/animal/pkg/database/dbtesting"
+	"github.com/danyazab/animal/pkg/database/fixtures"
 	"testing"
 	"time"
 

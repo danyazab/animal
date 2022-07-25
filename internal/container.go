@@ -1,13 +1,13 @@
 package internal
 
 import (
-	"danyazab/animal/config"
-	"danyazab/animal/internal/infrastructure/network/petfinder"
-	"danyazab/animal/internal/infrastructure/repository/postgres/datastore"
-	"danyazab/animal/pkg/database/core"
-	"danyazab/animal/pkg/database/migrator"
-	"danyazab/animal/pkg/http/client"
 	"fmt"
+	"github.com/danyazab/animal/config"
+	"github.com/danyazab/animal/internal/infrastructure/network/petfinder"
+	"github.com/danyazab/animal/internal/infrastructure/repository/postgres/datastore"
+	"github.com/danyazab/animal/pkg/database/core"
+	"github.com/danyazab/animal/pkg/database/migrator"
+	"github.com/danyazab/animal/pkg/http/client"
 	"time"
 
 	"github.com/go-resty/resty/v2"
