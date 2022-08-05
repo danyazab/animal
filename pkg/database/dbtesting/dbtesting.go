@@ -9,6 +9,7 @@ import (
 
 	"github.com/DATA-DOG/go-txdb"
 
+	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/jmoiron/sqlx"
 	"github.com/ory/dockertest/v3"
 )
@@ -52,8 +53,7 @@ func RunContainer(m *testing.M, config Config, migrator Migrator) int {
 			resource.GetPort(config.ExposePort),
 			config.DBName,
 		)
-
-		db, err = sql.Open("postgres", postgresDSN)
+		db, err = sql.Open("pgx", postgresDSN)
 		if err != nil {
 			return err
 		}
@@ -68,7 +68,7 @@ func RunContainer(m *testing.M, config Config, migrator Migrator) int {
 		log.Fatal(err)
 	}
 
-	txdb.Register("txdb", "postgres", postgresDSN)
+	txdb.Register("txdb", "pgx", postgresDSN)
 
 	code := m.Run()
 
